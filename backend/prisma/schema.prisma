@@ -1,0 +1,98 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model calls {
+  number_call            Int              @id @default(autoincrement())
+  time_lesson_start      DateTime         @db.Time(6)
+  time_lesson_end        DateTime         @db.Time(6)
+  time_end_without_lunch DateTime?        @db.Time(6)
+  schedule_table         schedule_table[]
+}
+
+/// This model has been renamed to 'Renamedclass' during introspection, because the original name 'class' is reserved.
+model group {
+  id_class       Int              @id @default(autoincrement())
+  title_class    String           @db.VarChar(30)
+  id_teacher     Int
+  teacher        teacher          @relation(fields: [id_teacher], references: [id_teacher], onDelete: NoAction, onUpdate: NoAction)
+  schedule_table schedule_table[]
+  student        student[]
+
+  @@map("class")
+}
+
+model days_of_week {
+  id_day         Int              @id @default(autoincrement())
+  title_day      String           @db.VarChar(20)
+  schedule_table schedule_table[]
+}
+
+model grade_sheet {
+  id_sheet      Int     @id @default(autoincrement())
+  id_student    Int
+  id_teacher    Int
+  id_subject    Int
+  comment_sheet String? @db.VarChar(200)
+  grade_number  String? @db.VarChar(2)
+  student       student @relation(fields: [id_student], references: [id_student], onDelete: NoAction, onUpdate: NoAction)
+  subject       subject @relation(fields: [id_subject], references: [id_subject], onDelete: NoAction, onUpdate: NoAction)
+  teacher       teacher @relation(fields: [id_teacher], references: [id_teacher], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model schedule_table {
+  id_schedule     Int          @id @default(autoincrement())
+  id_class        Int
+  id_teacher      Int
+  id_subject      Int
+  classroom_title String       @db.VarChar(10)
+  number_call     Int
+  id_day          Int
+  group           group        @relation(fields: [id_class], references: [id_class], onDelete: NoAction, onUpdate: NoAction)
+  days_of_week    days_of_week @relation(fields: [id_day], references: [id_day], onDelete: NoAction, onUpdate: NoAction)
+  subject         subject      @relation(fields: [id_subject], references: [id_subject], onDelete: NoAction, onUpdate: NoAction)
+  teacher         teacher      @relation(fields: [id_teacher], references: [id_teacher], onDelete: NoAction, onUpdate: NoAction)
+  calls           calls        @relation(fields: [number_call], references: [number_call], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model student {
+  id_student         Int           @id @default(autoincrement())
+  name_student       String        @db.VarChar(100)
+  surname_student    String        @db.VarChar(100)
+  patronymic_student String        @db.VarChar(100)
+  login_student      String        @db.VarChar(100)
+  password_student   String        @db.VarChar(100)
+  id_class           Int
+  grade_sheet        grade_sheet[]
+  group              group         @relation(fields: [id_class], references: [id_class], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model subject {
+  id_subject     Int              @id @default(autoincrement())
+  title_subject  String           @db.VarChar(100)
+  grade_sheet    grade_sheet[]
+  schedule_table schedule_table[]
+  teacher        teacher[]
+}
+
+model teacher {
+  id_teacher         Int              @id @default(autoincrement())
+  name_teacher       String           @db.VarChar(100)
+  surname_teacher    String           @db.VarChar(100)
+  patronymic_teacher String           @db.VarChar(100)
+  login_teacher      String           @db.VarChar(100)
+  password_teacher   String           @db.VarChar(100)
+  id_subject         Int
+  email_teacher      String?          @db.VarChar(40)
+  telegram_teacher   String?          @db.VarChar(50)
+  phone_teacher      String           @db.VarChar(20)
+  group              group[]
+  grade_sheet        grade_sheet[]
+  schedule_table     schedule_table[]
+  subject            subject          @relation(fields: [id_subject], references: [id_subject], onDelete: NoAction, onUpdate: NoAction)
+}
