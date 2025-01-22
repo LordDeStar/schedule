@@ -136,9 +136,32 @@ const signUpStudent = async (req, res)=>{
 
 }
 
+const getTeachers = async (req, res) =>{
+    const client = new PrismaClient();
+    const result = await client.teacher.findMany({
+        select:{
+            id_teacher: true,
+            id_subject: true,
+            name_teacher: true,
+            surname_teacher: true,
+            patronymic_teacher: true,
+            telegram_teacher: true,
+            email_teacher: true,
+            phone_teacher: true,
+            subject: {
+                select:{
+                    title_subject: true
+                }
+            }
+        }
+    });
+
+    res.json(result);
+}
 module.exports = {
     signInStudent,
     signInTeacher,
     signUpTeacher,
-    signUpStudent
+    signUpStudent, 
+    getTeachers
 }
