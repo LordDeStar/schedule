@@ -65,7 +65,7 @@ model student {
   name_student       String        @db.VarChar(100)
   surname_student    String        @db.VarChar(100)
   patronymic_student String        @db.VarChar(100)
-  login_student      String        @db.VarChar(100)
+  login_student      String        @db.VarChar(100) @unique
   password_student   String        @db.VarChar(100)
   id_class           Int
   grade_sheet        grade_sheet[]
@@ -85,7 +85,7 @@ model teacher {
   name_teacher       String           @db.VarChar(100)
   surname_teacher    String           @db.VarChar(100)
   patronymic_teacher String           @db.VarChar(100)
-  login_teacher      String           @db.VarChar(100)
+  login_teacher      String           @db.VarChar(100) @unique
   password_teacher   String           @db.VarChar(100)
   id_subject         Int
   email_teacher      String?          @db.VarChar(40)
