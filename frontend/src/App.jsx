@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import Header from './components/Header';
 import MainWindow from './components/MainWindow';
@@ -7,6 +8,14 @@ import Lessons from './components/Lessons';
 import LoginModal from './components/LoginModal';
 import Lecture from "./components/Lecture";
 import Seminars from "./components/Seminars";
+=======
+
+const App = () => {
+  return (
+    <div>test</div>
+  );
+}
+>>>>>>> 2479707e6a553bc2b051f61dce4d172b91dbab4f
 
 const App = () => {
     const [activeComponent, setActiveComponent] = useState('mainWindow');
