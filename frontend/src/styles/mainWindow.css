@@ -1,0 +1,156 @@
+.main-window {
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-around;
+    font-family: 'Roboto', sans-serif;
+    overflow: auto; /* Добавили overflow: auto для прокрутки, если понадобится */
+}
+
+.text-container {
+    flex: 1;
+    padding-right: 15px;
+    max-width: 50%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding-left: 10%;
+}
+
+.main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #f0f8ff;
+    
+}
+
+.main-text {
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #d3d3d3;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+    .main-text strong{
+        font-weight: 700;
+        color: #f0f8ff;
+
+    }
+
+.main-button {
+    background-color: #4a148c;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.main-button:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-2px);
+}
+
+.carousel-container {
+    flex: 1;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel {
+    width: 100%;
+    max-width: 500px; /* Увеличена максимальная ширина */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%; /* Зафиксировали минимальный размер */
+}
+
+.carousel-image {
+    width: 100%;
+    display: block;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.pagination {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.pagination button {
+    background-color: #7e57c2;
+    border: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button.active {
+    background-color: #3f51b5;
+    transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .main-window {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .text-container {
+        max-width: 100%;
+        padding-right: 0;
+        margin-bottom: 15px;
+        text-align: center;
+         padding-left: 0;
+    }
+
+    .main-title {
+        font-size: 2em;
+        margin-bottom: 8px;
+        margin-top: 40px;
+    }
+
+    .main-text {
+        font-size: 1em;
+         line-height: 1.4;
+    }
+
+    .carousel-container {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .carousel {
+         max-width: 100%;
+    }
+
+    .carousel-item {
+        min-width: 100%;
+    }
+
+    .carousel-image {
+        width: 100%;
+    }
+}

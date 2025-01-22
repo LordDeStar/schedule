@@ -1,0 +1,211 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #1a237e, #4a148c);
+    /* Градиент */
+    padding: 15px 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    /* Тень внизу */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0;
+    /* Удалить отступы по умолчанию body */
+}
+
+/*Добавленные стили*/
+.main-content {
+    margin-top: 0px;
+    /* Устанавливаем отступ сверху, для MainWindow = height header  + margin*/
+    width: 100%;
+    display: block;
+}
+
+a {
+    margin-top: 15px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.navLink {
+    margin-right: 15px;
+    /* Updated margin */
+    text-decoration: none;
+    color: #e0f7fa;
+    /* Светлый цвет текста */
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    font-size: 20px;
+    /* Updated font size */
+}
+
+.navLink:hover {
+    color: #bbdefb;
+    /* Цвет при наведении */
+    transform: scale(1.05);
+}
+
+.navLink.active {
+    color: #9fa8da;
+}
+
+.nestedContainer {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+    /* Updated margin */
+    text-align: center;
+    margin-top: 5px;
+}
+
+.nestedLink {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    /* Updated font size */
+    color: #e0f7fa;
+    /* Светлый цвет текста */
+}
+
+.subNav {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(74, 20, 140, 0.9);
+    /* полупрозрачный цвет */
+    border: 1px solid #9fa8da;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: none;
+    padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.subNav a {
+    font-size: 20px;
+    /* Updated font size for subnav links*/
+    color: #e0f7fa;
+    /* Светлый цвет текста */
+}
+
+.showSubNav {
+    display: block;
+}
+
+.loginContainer {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+}
+
+.loginIcon {
+    display: inline-block;
+    position: relative;
+}
+
+.loginIcon img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.loginIcon:hover::before {
+    content: attr(title);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(74, 20, 140, 0.9);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.loginIcon:hover::before {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px 10px;
+        flex-wrap: wrap;
+    }
+
+    nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .navLink {
+        margin-right: 5px;
+        margin-bottom: 5px;
+        font-size: 14px;
+        /* Adjust to 14px on mobile*/
+    }
+
+    .nestedLink {
+        font-size: 14px;
+        /* Adjust to 14px on mobile*/
+    }
+
+    .nestedContainer {
+        margin-right: 5px;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        order: 1;
+    }
+
+    .subNav a {
+        font-size: 14px;
+        /* Adjust to 14px on mobile*/
+    }
+
+    .subNav {
+        position: static;
+        margin-top: 5px;
+        border: none;
+        box-shadow: none;
+        transform: none;
+        text-align: left;
+        width: 100%;
+        /* make subnav span all width*/
+    }
+
+    .loginContainer {
+        position: static;
+        transform: none;
+        margin-left: 10px;
+        margin-right: 0;
+        order: 2;
+    }
+
+    .loginIcon img {
+        width: 25px;
+        height: 25px;
+    }
+}

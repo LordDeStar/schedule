@@ -1,0 +1,119 @@
+.contacts-container {
+    display: flex;
+    flex-direction: column; /* Изменили на column */
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh; /* Используем min-height вместо height */
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    overflow: auto; /* Добавили overflow: auto для прокрутки, если понадобится */
+}
+
+.text-container {
+    flex: 1; /* Текстовый контент занимает доступное пространство */
+    padding: 20px; /*  Добавлен отступ со всех сторон */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-top: 80px; /*  Отступ сверху, чтобы не перекрывать header */
+}
+
+.contacts-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+    margin-top: 0;
+}
+
+.contacts-container .main-text {
+    font-size: 1.1em;
+    line-height: 1.4; /* Уменьшили line-height */
+    color: #d3d3d3;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.contacts-container .main-text strong {
+    font-weight: 700;
+    color: #f0f8ff;
+}
+
+.contact-details {
+    margin-bottom: 20px;
+}
+
+.contact-item {
+    margin-bottom: 8px; /* Уменьшили margin */
+}
+
+.contact-label {
+    font-weight: 700;
+    color: #f0f8ff;
+    margin-right: 5px;
+}
+
+.contact-value a {
+    color: #e0f7fa;
+}
+
+.contact-value a:hover {
+    text-decoration: underline;
+}
+
+.social-container {
+    margin-top: 20px;
+    align-self: flex-end;  /* Выравниваем по правому краю в column */
+    padding-right: 10%;
+}
+
+
+.social-title {
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #f0f8ff;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .contacts-container {
+        padding: 15px;
+    }
+
+    .text-container {
+        padding: 15px;
+        margin-top: 20px; /* Уменьшенный отступ сверху */
+    }
+
+    .contacts-container .main-title {
+        font-size: 2em;
+        margin-bottom: 8px;
+        margin-top: 10px;
+    }
+
+    .contacts-container .main-text {
+        font-size: 1em;
+        line-height: 1.3; /* Уменьшили line-height */
+    }
+
+    .social-container {
+        align-items: center;
+        padding-right: 0;
+        margin-top: 20px;
+    }
+}

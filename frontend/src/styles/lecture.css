@@ -1,0 +1,133 @@
+.lecture-container {
+    display: flex;
+    flex-direction: column;
+     background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+     align-items: center;
+     justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+     overflow-x: hidden;
+}
+    .lecture-form{
+         flex: 1;
+         padding-right: 15px;
+          max-width: 80%;
+           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        padding-left: 10%;
+        margin-top: 40px;
+    }
+
+.lecture-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+    margin-top: 80px;
+    text-align: center;
+}
+    .upload-section {
+        display: flex;
+         flex-direction: column;
+        margin-bottom: 20px;
+        width: 100%;
+          align-items: center;
+           gap: 15px;
+}
+
+
+.upload-label {
+    display: inline-block;
+      padding: 10px 20px;
+    font-size: 1.2em;
+     background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    color: #f0f8ff;
+    cursor: pointer;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        text-align: center;
+}
+
+
+.file-input {
+    display: none;
+}
+
+ .upload-button {
+      padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+     background-color: #4a148c;
+    color: #fff;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+     .upload-button:hover {
+         background-color: #7b1fa2;
+         transform: translateY(-2px);
+    }
+    .upload-button:disabled{
+        background-color: #7e57c2;
+         cursor: not-allowed;
+         transform: none;
+    }
+
+.file-list {
+    display: flex;
+     flex-direction: column;
+       width: 80%;
+     max-width: 1000px;
+     margin-top: 20px;
+    padding-left: 10%;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.file-item {
+  display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1); /* полупрозрачный белый фон */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: left; /* выравниваем текст слева */
+    margin-bottom: 10px;
+}
+    .file-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+.file-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+     object-fit: contain;
+}
+
+.file-name {
+     font-size: 1.1em;
+    color: #e0f7fa;
+}
+@media (max-width: 768px) {
+      .lecture-container{
+         padding: 15px;
+    }
+     .lecture-form{
+        max-width: 100%;
+            padding-right: 0;
+          padding-left: 0;
+    }
+       .lecture-container .main-title {
+        font-size: 2em;
+          margin-top: 40px;
+        }
+
+        .file-list {
+        width: 100%;
+           padding-left: 0;
+        }
+}
