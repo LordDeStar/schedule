@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import '../styles/loginModal.css';
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        // Здесь можно добавить логику аутентификации
-        console.log("Login:", login);
-        console.log("Password:", password);
-        onClose();
+
+    const handleStudentLogin = () => {
+        if (login === 'student' && password === 'password') {
+            onLoginSuccess('student');
+            onClose();
+        } else {
+            alert('Неверный логин или пароль');
+        }
+    };
+
+    const handleTeacherLogin = () => {
+         if(login === 'teacher' && password === 'password'){
+           onLoginSuccess('teacher');
+             onClose();
+        } else if (login === 'admin' && password === 'password') {
+          onLoginSuccess('admin');
+            onClose();
+        } else {
+            alert('Неверный логин или пароль');
+         }
     };
 
     if (!isOpen) return null;
@@ -37,9 +52,12 @@ const LoginModal = ({ isOpen, onClose }) => {
                     />
                 </div>
                 <div className="button-group">
-                    <button className="modal-button login-button" onClick={handleLogin}>
-                        Войти
+                     <button className="modal-button student-button" onClick={handleStudentLogin}>
+                        Войти как студент
                     </button>
+                     <button className="modal-button teacher-button" onClick={handleTeacherLogin}>
+                        Войти как преподаватель
+                     </button>
                     <button className="modal-button cancel-button" onClick={onClose}>
                         Отмена
                     </button>

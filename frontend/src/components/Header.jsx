@@ -98,7 +98,7 @@ const Header = ({ activeComponent, setActiveComponent, onOpenLoginModal }) => {
                     >
                         <a
                              href="/courses/lectures"
-                            className={`navLink ${activePath === '/courses/lectures' ? 'active' : ''}`}
+                            className={`navLink ${activeComponent === '/courses/lectures' ? 'active' : ''}`}
                              onClick={(e) => {
                                  e.preventDefault();
                                  setActiveComponent("lectures");
@@ -107,7 +107,7 @@ const Header = ({ activeComponent, setActiveComponent, onOpenLoginModal }) => {
                             Лекции
                         </a>
                         <a
-                             href="/courses/seminars"
+                            href="/courses/seminars"
                             className={`navLink ${activeComponent === '/courses/seminars' ? 'active' : ''}`}
                              onClick={(e) => {
                                  e.preventDefault();

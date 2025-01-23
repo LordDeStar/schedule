@@ -1,0 +1,318 @@
+.admin-account-container {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.admin-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-top: 60px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.admin-account-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #f0f8ff;
+    margin-right: 15px;
+}
+
+.info-value {
+    font-size: 1.2em;
+    color: #e0f7fa;
+}
+
+.add-teacher-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-top: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-teacher-form .form-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-input {
+    padding: 10px;
+    border: 1px solid #7e57c2;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.admin-select {
+    padding: 10px;
+    border: 1px solid #7e57c2;
+    border-radius: 5px;
+   background-color: #7e57c2; /* Темно-сиреневый */
+     color: #e0f7fa;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4a148c;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+    align-self: center;
+}
+
+.add-button:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-2px);
+}
+
+.teachers-list {
+    width: 80%;
+    margin-top: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.teachers-list .list-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.teachers-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.teacher-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    margin-bottom: 10px;
+    min-width: 250px;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+
+.teacher-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.teacher-name {
+    font-size: 1.2em;
+    color: #e0f7fa;
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.teacher-info-card {
+    display: flex;
+    justify-content: space-between;
+      align-items: center;
+}
+
+.teacher-item-label {
+    font-weight: 600;
+    color: #f0f8ff;
+    margin-right: 5px;
+}
+
+.teacher-item-value {
+    font-size: 1em;
+    color: #e0f7fa;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.exit-button {
+      padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #7b1fa2;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.exit-button:hover {
+    background-color: #4a148c;
+    transform: translateY(-2px);
+}
+  .upload-schedule-section{
+        display: flex;
+         flex-direction: column;
+        max-width: 80%;
+          margin-top: 30px;
+           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+    .upload-schedule-section .upload-schedule-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+       text-align: center;
+   }
+    .upload-section {
+        display: flex;
+        flex-direction: column;
+         margin-bottom: 20px;
+          width: 100%;
+            align-items: center;
+           gap: 15px;
+    }
+ .upload-label {
+    display: inline-block;
+      padding: 10px 20px;
+    font-size: 1.2em;
+     background-color: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    color: #f0f8ff;
+    cursor: pointer;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        text-align: center;
+}
+  .file-input {
+    display: none;
+  }
+ .upload-button {
+     padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4a148c;
+    color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+     .upload-button:hover {
+         background-color: #7b1fa2;
+         transform: translateY(-2px);
+    }
+     .upload-button:disabled{
+        background-color: #7e57c2;
+         cursor: not-allowed;
+         transform: none;
+    }
+    .file-list {
+    display: flex;
+     flex-direction: column;
+    width: 100%;
+      max-width: 1000px;
+       margin-top: 20px;
+     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.file-item {
+   display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: left; /* выравниваем текст слева */
+    margin-bottom: 10px;
+      cursor: pointer;
+}
+ .file-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+    .file-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    object-fit: contain;
+}
+
+.file-name {
+     font-size: 1.1em;
+    color: #e0f7fa;
+}
+
+
+@media (max-width: 768px) {
+      .admin-account-container {
+         padding: 15px;
+    }
+     .admin-info {
+        max-width: 100%;
+    }
+         .admin-account-container .main-title {
+            font-size: 2em;
+        }
+       .add-teacher-form{
+          max-width: 100%;
+      }
+      .teachers-list{
+            width: 100%;
+    }
+   .teachers-cards{
+        flex-direction: column;
+        align-items: center;
+    }
+   .teacher-card{
+       min-width: auto;
+      max-width: 100%;
+   }
+    .upload-schedule-section{
+      max-width: 100%;
+    }
+}

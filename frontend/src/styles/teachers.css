@@ -19,7 +19,7 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     padding-left: 10%;
     margin-top: 80px; /* Добавляем отступ сверху */
-     display: flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -39,7 +39,10 @@
     flex-direction: column;
     gap: 20px;
     margin-top: 20px;
-    width: 100%;
+    width: 100%; /* Ширина списка на весь контейнер */
+      padding-right: 10%;
+      padding-left: 10%;
+       box-sizing: border-box;
 }
 
 .teacher-card {
@@ -51,7 +54,8 @@
     text-align: left;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 100%; /* Занимаем всю ширину списка */
+    box-sizing: border-box; /* убераем выход за рамки */
 }
 
 .teacher-card:hover {
@@ -90,7 +94,6 @@
         padding: 15px;
         flex-direction: column;
         align-items: flex-start;
-         justify-content: flex-start; /* align наверх на мобилках */
     }
 
     .teachers-container .text-container {
@@ -99,17 +102,16 @@
         padding-left: 0;
         margin-bottom: 15px;
         text-align: center;
-        margin-top: 20px; /* Добавляем отступ сверху на мобильных */
     }
 
-     .teachers-container .main-title {
-            font-size: 2em;
-            margin-bottom: 8px;
-             margin-top: 0px; /* убираем отступ на мобильных*/
-        }
+    .teachers-container .main-title {
+        font-size: 2em;
+        margin-bottom: 8px;
+        margin-top: 0px; /* убираем отступ на мобильных*/
+    }
 
-      .teacher-card {
-          width: 100%;
-      }
+    .teacher-card {
+         width: 100%; /* Занимаем всю ширину списка на мобилках */
+     }
 
 }

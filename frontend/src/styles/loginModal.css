@@ -10,6 +10,7 @@
     align-items: center;
     z-index: 1000;
     opacity: 0;
+    font-family: 'Roboto', sans-serif;
     animation: fadeIn 0.3s ease forwards;
 }
 
@@ -76,8 +77,9 @@
 
 .button-group {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Изменено для централизации */
     margin-top: 20px;
+    gap: 15px; /* добавляем gap между кнопками */
 }
 
 .modal-button {
@@ -86,7 +88,25 @@
     border-radius: 5px;
     font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+     transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.student-button {
+    background-color: #4a148c;
+    color: #fff;
+}
+
+.teacher-button {
+    background-color: #7b1fa2;
+      color: #fff;
+}
+.student-button:hover {
+  background-color: #7b1fa2;
+       transform: translateY(-2px);
+}
+
+.teacher-button:hover {
+     background-color: #4a148c;
+      transform: translateY(-2px);
 }
 
 .login-button {

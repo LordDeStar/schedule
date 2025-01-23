@@ -1,0 +1,172 @@
+.personal-account-container {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.student-info{
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-top: 60px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.personal-account-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f0f8ff;
+    text-align: center;
+}
+    .info-item{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+    .info-label{
+        font-weight: 600;
+        color: #f0f8ff;
+        margin-right: 15px;
+    }
+    .info-value{
+        font-size: 1.2em;
+        color: #e0f7fa;
+    }
+
+.grades-table {
+    width: 80%;
+    margin-top: 30px;
+    overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-collapse: collapse;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+ .grades-table table {
+     width: 100%;
+      border-collapse: collapse;
+    }
+
+.grades-table th,
+.grades-table td {
+    border: 1px solid #7e57c2;
+    padding: 8px;
+    text-align: left;
+     font-size: 1.2em;
+    color: #e0f7fa;
+}
+
+.grades-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+  .average-grade-section{
+        display: flex;
+         flex-direction: column;
+         align-items: center;
+          margin-top: 30px;
+        gap: 15px;
+    }
+
+    .average-grades-container{
+        display: flex;
+        flex-wrap: wrap;
+         justify-content: center;
+           width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .average-grade-table {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin: 10px;
+        min-width: 250px;
+        max-width: 350px;
+        box-sizing: border-box; /* делаем чтоб max-width и padding не увеличивали размер карточки */
+}
+
+  .average-grade-title{
+    font-size: 1.4em;
+       color: #e0f7fa;
+         font-weight: 500;
+         margin-bottom: 10px;
+    text-align: center;
+}
+  .average-table{
+      width: 100%;
+        border-collapse: collapse;
+}
+  .average-table th,
+   .average-table td{
+        border: 1px solid #7e57c2;
+    padding: 8px;
+       text-align: left;
+    font-size: 1.1em;
+        color: #e0f7fa;
+}
+    .average-grade-button {
+         padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+     background-color: #4a148c;
+    color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+    .average-grade-button:hover {
+         background-color: #7b1fa2;
+         transform: translateY(-2px);
+    }
+  .exit-button {
+        padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+     background-color: #7b1fa2;
+    color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+     transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .exit-button:hover {
+         background-color: #4a148c;
+         transform: translateY(-2px);
+    }
+
+@media (max-width: 768px) {
+    .personal-account-container {
+        padding: 15px;
+    }
+    .student-info {
+        max-width: 100%;
+    }
+      .personal-account-container .main-title {
+            font-size: 2em;
+        }
+     .grades-table {
+        width: 100%;
+    }
+      .average-grade-section{
+             margin-top: 15px;
+         }
+         .average-grades-container{
+            flex-direction: column;
+            align-items: center;
+               width: 100%;
+         }
+         .average-grade-table{
+              min-width: auto;
+              max-width: 100%;
+         }
+}
