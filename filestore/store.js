@@ -43,6 +43,21 @@ app.get('/download', (req, res) => {
     });
 });
 
+app.get('/get-files', (req, res)=>{
+    fs.readdir(STORAGE_PATH, (err, files) => {
+        if (err) {
+          return res.status(500).json({ error: 'Ошибка при чтении папки' });
+        }
+        const fileNames = files.filter((file) => {
+          const filePath = path.join(STORAGE_PATH, file);
+          return fs.statSync(filePath).isFile();
+        });
+    
+        res.json({ files: fileNames });
+      });
+})
+
+
 app.listen(3501, () => {
     console.log('Сервер запущен на http://localhost:3501');
 });
