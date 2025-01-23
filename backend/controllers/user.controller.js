@@ -21,12 +21,17 @@ const signInStudent = async (req, res)=>{
 
         }
     });
-
-    const isPassValid = await argon.verify(user.password_student, password);
-    if (!isPassValid){
-        res.status(401).json({message: "Доступ запрещен"});
+    if (user == null) {
+        res.status(404).json({message: "Пользователь не найден"});
     }
-    res.json(user);
+    else{
+        const isPassValid = await argon.verify(user.password_student, password);
+        if (!isPassValid){
+            res.status(401).json({message: "Доступ запрещен"});
+        }
+        res.json(user);
+    }
+    
 }
 
 const signInTeacher = async(req, res)=>{
