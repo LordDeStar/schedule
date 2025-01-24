@@ -55,6 +55,11 @@ const signInTeacher = async(req, res)=>{
                     title_subject: true
                 }
                 
+            },
+            group:{
+                select:{
+                    title_class: true
+                }
             }
         }
     });

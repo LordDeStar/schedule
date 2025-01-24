@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Header from './components/Header';
 import MainWindow from './components/MainWindow';
 import Contacts from './components/Contacts';
@@ -10,8 +10,9 @@ import Seminars from "./components/Seminars";
 import PersonalAccount from './components/PersonalAccount';
 import TeacherAccount from "./components/TeacherAccount";
 import AdminAccount from "./components/AdminAccount";
-
+import { UserContext } from './stores';
 const App = () => {
+    const userStore = useContext(UserContext);
     const [activeComponent, setActiveComponent] = useState('mainWindow');
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
      const [isPersonalAccountOpen, setIsPersonalAccountOpen] = useState(false);
@@ -27,16 +28,16 @@ const App = () => {
         setIsLoginModalOpen(false);
     };
 
-   const handleLoginSuccess = (userType) => {
-      if (userType === 'student') {
+   const handleLoginSuccess = () => {
+      if (userStore.role === 'student') {
             setIsPersonalAccountOpen(true);
             setIsTeacherAccountOpen(false);
             setIsAdminAccountOpen(false);
-         } else if (userType === 'teacher') {
+         } else if (userStore.role === 'teacher') {
              setIsTeacherAccountOpen(true);
             setIsPersonalAccountOpen(false);
            setIsAdminAccountOpen(false);
-        } else if(userType === 'admin'){
+        } else if(userStore.role === 'admin'){
             setIsAdminAccountOpen(true);
            setIsPersonalAccountOpen(false);
             setIsTeacherAccountOpen(false);

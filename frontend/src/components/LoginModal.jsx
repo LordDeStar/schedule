@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import { UserContext } from "../stores";
 import "../styles/loginModal.css";
 
-const LoginModal = ({ isOpen, onClose }) => {
+const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
   const userStore = useContext(UserContext);
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +13,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     const handleStudentLogin = async () => {
         await userStore.loginAsStudent(login, password);
         userStore.setRole("student");
+        onLoginSuccess();
         onClose();
     };
 
@@ -24,6 +25,9 @@ const LoginModal = ({ isOpen, onClose }) => {
         else{
             userStore.setRole("teacher");
         }
+        console.log(userStore.currentUser);
+        onLoginSuccess();
+        onClose();
     };
 
   if (!isOpen) return null;

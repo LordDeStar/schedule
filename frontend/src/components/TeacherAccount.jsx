@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/teacherAccount.css';
+import { UserContext } from '../stores';
 
 const TeacherAccount = ({ onClose }) => {
+    const userStore = useContext(UserContext);
+    let hasGroup = false; 
     const teacherData = {
-        fullName: 'Сидорова Анна Васильевна',
-        group: 'ИВТ-21',
-         subject: 'Программирование',
+        fullName: `${userStore.currentUser.surname_teacher} ${userStore.currentUser.name_teacher} ${userStore.currentUser.patronymic_teacher}`,
+        
+         subject: userStore.currentUser.subject.title_subject,
     };
+    if (userStore.currentUser.group.length > 0){
+        teacherData.group = userStore.currentUser.group[0].title_class;
+        hasGroup = true;
+    }
 
     const [newStudent, setNewStudent] = useState({
         fullName: '',
@@ -41,16 +48,18 @@ const TeacherAccount = ({ onClose }) => {
                     <span className="info-label">ФИО:</span>
                     <span className="info-value">{teacherData.fullName}</span>
                 </div>
+                { hasGroup &&
                 <div className="info-item">
                     <span className="info-label">Кураторская группа:</span>
                     <span className="info-value">{teacherData.group}</span>
                 </div>
+                }
                 <div className="info-item">
                     <span className="info-label">Предмет:</span>
                     <span className="info-value">{teacherData.subject}</span>
                 </div>
             </div>
-
+            
              <div className="add-student-form">
                     <h3 className="form-title">Добавить студента в группу</h3>
                      <div className="input-group">
