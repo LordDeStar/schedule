@@ -1,157 +1,238 @@
 .teacher-account-container {
     display: flex;
-   flex-direction: column;
-   background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
-   color: #e0f7fa;
-   padding: 20px;
-   min-height: 100vh;
-   box-sizing: border-box;
-   align-items: center;
-   justify-content: flex-start;
-   font-family: 'Roboto', sans-serif;
-   overflow-x: hidden;
-}
-
-.teacher-info{
-   display: flex;
-   flex-direction: column;
-   max-width: 80%;
-   margin-top: 60px;
-     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-.teacher-account-container .main-title {
-   font-size: 2.8em;
-   font-weight: 700;
-   margin-bottom: 20px;
-   color: #f0f8ff;
-   text-align: center;
-}
-   .info-item{
-       display: flex;
-       justify-content: space-between;
-       margin-bottom: 10px;
-   }
-   .info-label{
-       font-weight: 600;
-       color: #f0f8ff;
-       margin-right: 15px;
-   }
-   .info-value{
-       font-size: 1.2em;
-       color: #e0f7fa;
-   }
-
-   .add-student-form{
-       display: flex;
-       flex-direction: column;
-        max-width: 80%;
-          margin-top: 30px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
- .add-student-form .form-title {
-   font-size: 1.8em;
-   font-weight: 700;
-   margin-bottom: 10px;
-   color: #f0f8ff;
-      text-align: center;
-}
- .input-group {
-      margin-bottom: 15px;
-       display: flex;
     flex-direction: column;
-   }
- .teacher-input{
-        padding: 10px;
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+}
+
+.teacher-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-top: 60px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-account-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #f0f8ff;
+    margin-right: 15px;
+}
+
+.info-value {
+    font-size: 1.2em;
+    color: #e0f7fa;
+}
+
+.add-student-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin-top: 30px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.add-student-form .form-title {
+    font-size: 1.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #f0f8ff;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.teacher-input {
+    padding: 10px;
     border: 1px solid #7e57c2;
-   border-radius: 5px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+}
+.teacher-datepicker{
+    padding: 10px;
+     border: 1px solid #7e57c2;
+    border-radius: 5px;
+     background-color: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      width: 100%;
+    box-sizing: border-box;
+}
+.teacher-textarea{
+     padding: 10px;
+    border: 1px solid #7e57c2;
+    border-radius: 5px;
    background-color: rgba(255, 255, 255, 0.1);
    color: #e0f7fa;
-   font-size: 1em;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-       width: 100%;
-        box-sizing: border-box;
-   }
-   .add-button {
-       padding: 10px 20px;
-   border: none;
-   border-radius: 5px;
-   font-size: 1em;
-   cursor: pointer;
-    background-color: #4a148c;
-   color: #fff;
-     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-   transition: background-color 0.3s ease, transform 0.2s ease;
-   margin-top: 15px;
-   align-self: center;
+    font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+     height: 80px;
+    resize: vertical;
 }
-   .add-button:hover {
-        background-color: #7b1fa2;
-        transform: translateY(-2px);
-   }
-.students-list {
-      width: 80%;
-       margin-top: 30px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
- .students-list .list-title{
-       font-size: 1.8em;
-   font-weight: 700;
-   margin-bottom: 10px;
-    color: #f0f8ff;
-   text-align: center;
- }
-.students-list ul{
-     list-style: none;
-      padding: 0;
-   }
-.student-item {
-       background-color: rgba(255, 255, 255, 0.1);
-       border-radius: 8px;
-       padding: 10px;
-       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-       transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-   margin-bottom: 10px;
-       text-align: center;
-}
-    .student-name {
-          font-size: 1.1em;
-           color: #e0f7fa;
-    }
- .button-group{
-     display: flex;
-   justify-content: center;
-       margin-top: 30px;
- }
-.exit-button {
-   padding: 10px 20px;
-   border: none;
-   border-radius: 5px;
-   font-size: 1em;
-   cursor: pointer;
-   background-color: #7b1fa2;
-   color: #fff;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, transform 0.2s ease;
-   }
-   .exit-button:hover {
-        background-color: #4a148c;
-        transform: translateY(-2px);
-   }
 
-@media (max-width: 768px) {
-    .teacher-account-container {
-       padding: 15px;
-   }
-   .teacher-info {
-       max-width: 100%;
-   }
-      .teacher-account-container .main-title {
-           font-size: 2em;
-       }
-    .add-student-form{
-         max-width: 100%;
-   }
-    .students-list{
-           width: 100%;
-   }
+.add-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4a148c;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 15px;
+    align-self: center;
 }
+
+.add-button:hover {
+    background-color: #7b1fa2;
+    transform: translateY(-2px);
+}
+
+.students-list {
+    width: 80%;
+     margin-top: 30px;
+     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .students-list .list-title {
+      font-size: 1.8em;
+      font-weight: 700;
+       margin-bottom: 20px;
+      color: #f0f8ff;
+      text-align: center;
+  }
+  
+  .students-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+  }
+  .student-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      margin-bottom: 10px;
+       min-width: 250px;
+      max-width: 350px;
+      box-sizing: border-box;
+  }
+      .student-card:hover {
+          transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      }
+  
+     .student-name {
+         font-size: 1.2em;
+      color: #f0f8ff;
+      text-align: center;
+         display: block;
+      margin-bottom: 10px;
+      }
+  .student-info {
+      display: flex;
+       flex-direction: column;
+      gap: 10px;
+  }
+  .student-edit-form {
+       display: flex;
+      flex-direction: column;
+      gap: 10px;
+      }
+  .input-group {
+      display: flex;
+        flex-direction: column;
+  }
+  .info-group {
+       display: flex;
+      align-items: center;
+        justify-content: space-between;
+      margin-bottom: 5px;
+  }
+  .info-label {
+       font-weight: 600;
+     color: #f0f8ff;
+      margin-right: 10px;
+      }
+  
+  .info-value {
+      font-size: 1em;
+      color: #e0f7fa;
+  }
+  .edit-buttons{
+          display: flex;
+       justify-content: flex-end;
+          margin-top: 10px;
+          gap: 5px;
+      }
+  .save-button,
+  .edit-button,
+  .cancel-button {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      font-size: 0.9em;
+      cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .save-button {
+      background-color: #4a148c;
+      color: #fff;
+  }
+  .cancel-button{
+      background-color: #7b1fa2;
+      color: #fff;
+  }
+  .edit-button {
+       background-color: #7b1fa2;
+      color: #fff;
+  }
+  .save-button:hover {
+      background-color: #7b1fa2;
+      transform: translateY(-2px);
+  }
+  .cancel-button:hover {
+      background-color: #4a148c;
+      transform: translateY(-2px);
+  }
+  .edit-button:hover {
+      background-color: #4a148c;
+      transform: translateY(-2px);
+  }

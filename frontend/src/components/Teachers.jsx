@@ -2,59 +2,67 @@ import React from 'react';
 import '../styles/teachers.css';
 
 const Teachers = () => {
-    // Список преподавателей (можете заменить на ваши реальные данные)
     const teachersData = [
         {
             id: 1,
-            lastName: "Иванов",
-            firstName: "Иван",
-            middleName: "Иванович",
-            classGroup: "ИВТ-21",
-            leadership: "Куратор",
-            phoneNumber: "+7 (999) 123-4567",
-            subject: "Информатика",
+            fullName: 'Иванов Иван Иванович',
+            telegram: '@ivanov_ivan',
+            email: 'ivanov@example.com',
+            phoneNumber: '+79001234567',
+            subject: 'Математика',
+            classGroup: 'ИВТ-21',
+            leadership: "куратор"
         },
         {
             id: 2,
-            lastName: "Петрова",
-            firstName: "Елена",
-            middleName: "Сергеевна",
-            classGroup: "СЭЗ-22",
-            leadership: "Куратор",
-            phoneNumber: "+7 (987) 654-3210",
-            subject: "Экономика",
+            fullName: 'Петрова Анна Сергеевна',
+            telegram: null,
+            email: 'petrova@example.com',
+            phoneNumber: '+79112345678',
+            subject: 'Физика',
+            classGroup: 'ПИ-21',
+             leadership: "зам. куратора"
         },
         {
             id: 3,
-            lastName: "Сидорова",
-            firstName: "Анна",
-            middleName: "Викторовна",
-            classGroup: "ИВТ-23",
-            leadership: "Куратор",
-            phoneNumber: "+7 (987) 523-5210",
-            subject: "Программирование",
+            fullName: 'Смирнов Дмитрий Александрович',
+            telegram: '@smirnov_dmitry',
+            email: null,
+            phoneNumber: '+79223456789',
+            subject: 'Информатика',
+            classGroup: 'М-21',
+             leadership: "не куратор"
         },
-        {
+         {
             id: 4,
-            lastName: "Смирнов",
-            firstName: "Алексей",
-            middleName: "Олегович",
-            classGroup: null,
-            leadership: "Заведующий отделением",
-            phoneNumber: "+7 (952) 523-3210",
-            subject: "Управление проектами",
+            fullName: 'Кузнецова Елена Викторовна',
+            telegram: null,
+            email: null,
+            phoneNumber: '+79334567890',
+             subject: 'Химия',
+            classGroup: 'ИВТ-22',
+              leadership: "куратор"
         },
         {
             id: 5,
-            lastName: "Козлова",
-            firstName: "Мария",
-            middleName: "Петровна",
-            classGroup: null,
-            leadership: "Методист",
-            phoneNumber: "+7 (956) 789-3210",
-            subject: "Методика обучения",
-        }
-        // Добавьте других преподавателей
+            fullName: 'Александрова Ольга Михайловна',
+            telegram: '@aleksandrova_olga',
+            email: 'aleksandrova@example.com',
+            phoneNumber: '+79445678901',
+            subject: 'Английский',
+            classGroup: 'ПИ-22',
+              leadership: "не куратор"
+        },
+         {
+            id: 6,
+            fullName: 'Соколов Максим Игоревич',
+            telegram: '@sokolov_maxim',
+            email: null,
+            phoneNumber: '+79556789012',
+            subject: 'История',
+            classGroup: 'М-22',
+            leadership: "зам. куратора"
+        },
     ];
 
     return (
@@ -64,10 +72,8 @@ const Teachers = () => {
                 <div className="teachers-list">
                     {teachersData.map((teacher) => (
                         <div key={teacher.id} className="teacher-card">
-                            <h3 className="teacher-name">
-                                {teacher.lastName} {teacher.firstName} {teacher.middleName}
-                            </h3>
-                            <div className="teacher-info">
+                        <h3 className="teacher-name">{teacher.fullName}</h3>
+                         <div className="teacher-info">
                                 {teacher.classGroup && (
                                     <div className="teacher-item">
                                         <strong className="teacher-label">Классная группа:</strong>
@@ -75,19 +81,27 @@ const Teachers = () => {
                                     </div>
                                 )}
                                 <div className="teacher-item">
-                                    <strong className="teacher-label">Руководство:</strong>
-                                    <span className="teacher-value">{teacher.leadership}</span>
-                                </div>
-                                 <div className="teacher-item">
+                                  <strong className="teacher-label">Руководство:</strong>
+                                  <span className="teacher-value">{teacher.leadership || 'не указано'}</span>
+                              </div>
+                                <div className="teacher-item">
                                     <strong className="teacher-label">Предмет:</strong>
                                     <span className="teacher-value">{teacher.subject}</span>
                                 </div>
+                                <div className="teacher-item">
+                                   <strong className="teacher-label">Telegram:</strong>
+                                   <span className="teacher-value">{teacher.telegram || 'не указан'}</span>
+                                </div>
+                                <div className="teacher-item">
+                                   <strong className="teacher-label">Email:</strong>
+                                   <span className="teacher-value">{teacher.email || 'не указан'}</span>
+                               </div>
                                 <div className="teacher-item">
                                     <strong className="teacher-label">Номер телефона:</strong>
                                     <span className="teacher-value">{teacher.phoneNumber}</span>
                                 </div>
                             </div>
-                        </div>
+                    </div>
                     ))}
                 </div>
             </div>
