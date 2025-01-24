@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Загрузка файла</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .upload-container {
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .message {
+      margin-top: 20px;
+      color: green;
+    }
+    .error {
+      margin-top: 20px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="upload-container">
+    <h1>Загрузите файл</h1>
+    <input type="file" id="fileInput" accept=".xlsx, .xls" />
+    <button onclick="uploadFile()">Отправить</button>
+
+    <div id="message" class="message"></div>
+    <div id="error" class="error"></div>
+  </div>
+
+  <script>
+    async function uploadFile() {
+      const fileInput = document.getElementById('fileInput');
+      const messageDiv = document.getElementById('message');
+      const errorDiv = document.getElementById('error');
+
+      // Очищаем сообщения
+      messageDiv.textContent = '';
+      errorDiv.textContent = '';
+
+      if (!fileInput.files || fileInput.files.length === 0) {
+        errorDiv.textContent = 'Пожалуйста, выберите файл.';
+        return;
+      }
+
+      const file = fileInput.files[0];
+
+      try {
+        // Чтение файла как ArrayBuffer
+        const fileBuffer = await file.arrayBuffer();
+
+        // Отправка файла на сервер
+        const response = await fetch('http://localhost:3500/schedule/set', {
+          method: 'POST',
+          body: fileBuffer,
+          headers: {
+            'Content-Type': 'application/octet-stream', // Указываем тип содержимого
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Ошибка при отправке файла на сервер.');
+        }
+
+        const result = await response.json();
+
+        console.log(result);
+      } catch (err) {
+        errorDiv.textContent = 'Ошибка при отправке файла на сервер.';
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>

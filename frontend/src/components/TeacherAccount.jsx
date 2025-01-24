@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/teacherAccount.css';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { UserContext } from '../stores';
 
 const TeacherAccount = ({ onClose }) => {
+    const userStore = useContext(UserContext);
+    let hasGroup = false; 
     const teacherData = {
-        fullName: 'Сидорова Анна Васильевна',
-        group: 'ИВТ-21',
-        subject: 'Программирование',
+        fullName: `${userStore.currentUser.surname_teacher} ${userStore.currentUser.name_teacher} ${userStore.currentUser.patronymic_teacher}`,
+        
+         subject: userStore.currentUser.subject.title_subject,
     };
+    if (userStore.currentUser.group.length > 0){
+        teacherData.group = userStore.currentUser.group[0].title_class;
+        hasGroup = true;
+    }
 
     const [students, setStudents] = useState([]);
     const [newStudent, setNewStudent] = useState({
@@ -101,140 +106,71 @@ const TeacherAccount = ({ onClose }) => {
                <h2 className="main-title">Личный кабинет преподавателя</h2>
                  <div className="info-item">
                     <span className="info-label">ФИО:</span>
-                   <span className="info-value">{teacherData.fullName}</span>
-               </div>
+                    <span className="info-value">{teacherData.fullName}</span>
+                </div>
+                { hasGroup &&
                 <div className="info-item">
-                   <span className="info-label">Кураторская группа:</span>
-                   <span className="info-value">{teacherData.group}</span>
-               </div>
-                 <div className="info-item">
-                   <span className="info-label">Предмет:</span>
+                    <span className="info-label">Кураторская группа:</span>
+                    <span className="info-value">{teacherData.group}</span>
+                </div>
+                }
+                <div className="info-item">
+                    <span className="info-label">Предмет:</span>
                     <span className="info-value">{teacherData.subject}</span>
                  </div>
             </div>
-
-            <div className="add-student-form">
-                <h3 className="form-title">Добавить студента</h3>
-                <table>
-                  <tbody>
-                    <tr>
-                        <td>ФИО студента:</td>
-                        <td>
-                            <input
-                                type="text"
-                                name="fullName"
-                                value={newStudent.fullName}
-                                onChange={handleInputChange}
-                                className="teacher-input"
-                           />
-                         </td>
-                    </tr>
-                      <tr>
-                           <td>Логин студента:</td>
-                            <td>
-                                 <input
-                                    type="text"
-                                   name="login"
-                                   value={newStudent.login}
-                                    onChange={handleInputChange}
-                                     className="teacher-input"
-                                  />
-                            </td>
-                     </tr>
-                     <tr>
-                        <td>Пароль студента:</td>
-                        <td>
-                             <input
-                                 type="password"
-                                   name="password"
-                                  value={newStudent.password}
-                                    onChange={handleInputChange}
-                                   className="teacher-input"
-                                />
-                           </td>
-                     </tr>
-                       <tr>
-                           <td colSpan="2">
-                                <button className="add-button" onClick={handleAddStudent}>
-                                   Добавить студента
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                 </table>
-            </div>
-           {students.length > 0 && (
-               <div className="students-list">
-                    <h3 className="list-title">Студенты группы {teacherData.group}</h3>
-                     <div className="students-cards">
-                        {students.map((student) => (
-                            <div key={student.id} className="student-card">
-                                 <h4 className="student-name">{student.fullName}</h4>
-                                   {editingStudentId === student.id ? (
-                                    <div className="student-edit-form">
-                                        <div className="input-group">
-                                             <label className="input-label">Оценка:</label>
-                                                <input
-                                                   type="number"
-                                                     value={studentGrades[student.id]?.grade || ''}
-                                                   onChange={(e) => handleGradeChange(student.id, e.target.value)}
-                                                   className="teacher-input"
-                                                     min="1"
-                                                    max="5"
-                                                  />
-                                       </div>
-                                       <div className="input-group">
-                                            <label className="input-label">Дата:</label>
-                                               <DatePicker
-                                                    selected={studentGrades[student.id]?.date || new Date()}
-                                                   onChange={(date) => handleDateChange(student.id, date)}
-                                                   dateFormat="yyyy-MM-dd"
-                                                    className="teacher-datepicker"
-                                                 />
-                                           </div>
-                                           <div className="input-group">
-                                                <label className="input-label">Комментарий:</label>
-                                                    <textarea
-                                                       value={studentGrades[student.id]?.comment || ''}
-                                                        onChange={(e)=>handleCommentChange(student.id, e.target.value)}
-                                                        className="teacher-textarea"
-                                                    />
-                                           </div>
-                                       <div className="edit-buttons">
-                                         <button
-                                            className="save-button"
-                                            onClick={() => handleSaveGrade(student.id)}
-                                          >Сохранить</button>
-                                          <button className="cancel-button" onClick={handleCancelEdit}>Отмена</button>
-                                       </div>
-                                  </div>
-                                  ) : (
-                                   <div className="student-info">
-                                      <div className="info-group">
-                                        <span className="info-label">Оценка:</span>
-                                         <span className="info-value">{studentGrades[student.id]?.grade || ''}</span>
-                                    </div>
-                                      <div className="info-group">
-                                          <span className="info-label">Дата:</span>
-                                           <span className="info-value">{studentGrades[student.id]?.date?.toLocaleDateString() || ''}</span>
-                                      </div>
-                                      <div className="info-group">
-                                           <span className="info-label">Комментарий:</span>
-                                           <span className="info-value">{studentGrades[student.id]?.comment || ''}</span>
-                                      </div>
-                                      <button className="edit-button" onClick={() => handleEditGrade(student.id)}>
-                                           Редактировать
-                                      </button>
-                                    </div>
-                                  )}
-                            </div>
-                        ))}
+            
+             <div className="add-student-form">
+                    <h3 className="form-title">Добавить студента в группу</h3>
+                     <div className="input-group">
+                        <label className="input-label">ФИО студента:</label>
+                        <input
+                            type="text"
+                            name="fullName"
+                            value={newStudent.fullName}
+                            onChange={handleInputChange}
+                            className="teacher-input"
+                        />
+                     </div>
+                   <div className="input-group">
+                        <label className="input-label">Логин студента:</label>
+                        <input
+                            type="text"
+                           name="login"
+                            value={newStudent.login}
+                            onChange={handleInputChange}
+                            className="teacher-input"
+                        />
                     </div>
-              </div>
-            )}
-            <div className="button-group">
-                <button className="exit-button" onClick={onClose}>Выйти из личного кабинета</button>
-           </div>
+                    <div className="input-group">
+                        <label className="input-label">Пароль студента:</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={newStudent.password}
+                            onChange={handleInputChange}
+                           className="teacher-input"
+                        />
+                    </div>
+                    <button className="add-button" onClick={handleAddStudent}>Добавить студента</button>
+                </div>
+
+             {students.length > 0 && (
+                   <div className="students-list">
+                       <h3 className="list-title">Студенты группы {teacherData.group}</h3>
+                       <ul>
+                           {students.map((student, index) => (
+                              <li key={index} className="student-item">
+                                 <span className="student-name">{student.fullName}</span>
+                              </li>
+                           ))}
+                       </ul>
+                  </div>
+               )}
+
+                <div className="button-group">
+                       <button className="exit-button" onClick={onClose}>Выйти из личного кабинета</button>
+                </div>
         </div>
     );
 };

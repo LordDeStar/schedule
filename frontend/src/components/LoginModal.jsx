@@ -1,33 +1,36 @@
-import React, { useState } from 'react';
-import '../styles/loginModal.css';
+// components/LoginModal.js
+import React, { useState, useContext } from "react";
+import { observer } from "mobx-react-lite";
+import { UserContext } from "../stores";
+import "../styles/loginModal.css";
 
 const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
-    const [login, setLogin] = useState('');
-    const [password, setPassword] = useState('');
+  const userStore = useContext(UserContext);
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
 
 
-    const handleStudentLogin = () => {
-        if (login === 'student' && password === 'password') {
-            onLoginSuccess('student');
-            onClose();
-        } else {
-            alert('Неверный логин или пароль');
+    const handleStudentLogin = async () => {
+        await userStore.loginAsStudent(login, password);
+        userStore.setRole("student");
+        onLoginSuccess();
+        onClose();
+    };
+
+    const handleTeacherLogin = async () => {
+        await userStore.loginAsTeacher(login, password);
+        if (userStore.currentUser.subject.title_subject === "admin"){
+            userStore.setRole("admin");
         }
+        else{
+            userStore.setRole("teacher");
+        }
+        console.log(userStore.currentUser);
+        onLoginSuccess();
+        onClose();
     };
 
-    const handleTeacherLogin = () => {
-         if(login === 'teacher' && password === 'password'){
-           onLoginSuccess('teacher');
-             onClose();
-        } else if (login === 'admin' && password === 'password') {
-          onLoginSuccess('admin');
-            onClose();
-        } else {
-            alert('Неверный логин или пароль');
-         }
-    };
-
-    if (!isOpen) return null;
+  if (!isOpen) return null;
 
     return (
         <div className="modal-overlay">
@@ -67,4 +70,5 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }) => {
     );
 };
 
-export default LoginModal;
+// Оберните компонент в observer
+export default observer(LoginModal);
