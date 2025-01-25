@@ -1,0 +1,161 @@
+.journal-container {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a237e, #4a148c, #7b1fa2);
+    color: #e0f7fa;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    font-family: 'Roboto', sans-serif;
+     overflow-x: hidden;
+}
+
+.journal-container .main-title {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #f0f8ff;
+      margin-top: 80px;
+    text-align: center;
+}
+    .group-select{
+    display: flex;
+    margin-bottom: 20px;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+}
+.select-label{
+   font-size: 1.2em;
+      color: #f0f8ff;
+}
+.group-select-input{
+     padding: 8px;
+    border: 1px solid #7e57c2;
+    border-radius: 5px;
+    background-color: #7e57c2;
+    color: #e0f7fa;
+      font-size: 1em;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+}
+   .journal-table {
+      width: 80%;
+       margin-top: 30px;
+    overflow-x: auto;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-collapse: collapse;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+     .journal-table table {
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+ .journal-table th,
+ .journal-table td {
+    border: 1px solid #7e57c2;
+        padding: 8px;
+    text-align: left;
+        font-size: 1.2em;
+      color: #e0f7fa;
+    }
+
+.journal-table th {
+    background-color: rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+}
+  .grade-input-container{
+    display: inline-block;
+    margin-right: 5px;
+}
+    .grade-input {
+        padding: 5px;
+        border: 1px solid #7e57c2;
+        border-radius: 5px;
+        background-color: rgba(255, 255, 255, 0.1);
+         color: #e0f7fa;
+         max-width: 50px;
+    }
+    .add-grade-button {
+       border: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        cursor: pointer;
+        font-size: 1.2em;
+        color: #e0f7fa;
+          margin-left: 5px;
+            border-radius: 5px;
+        padding: 3px 5px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+     transition: background-color 0.3s ease;
+    }
+     .add-grade-button:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+   .comment-input{
+       padding: 5px;
+    border: 1px solid #7e57c2;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #e0f7fa;
+      width: 200px;
+    }
+    .journal-button-section{
+       margin-top: 30px;
+          display: flex;
+          justify-content: center;
+           gap: 15px;
+}
+  .save-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+     background-color: #4a148c;
+    color: #fff;
+       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+     transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+     .save-button:hover {
+         background-color: #7b1fa2;
+         transform: translateY(-2px);
+    }
+ .exit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+     background-color: #7b1fa2;
+    color: #fff;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+     transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .exit-button:hover {
+         background-color: #4a148c;
+          transform: translateY(-2px);
+    }
+
+@media (max-width: 768px) {
+   .journal-container {
+         padding: 15px;
+    }
+     .journal-container .main-title {
+        font-size: 2em;
+           margin-top: 40px;
+    }
+      .journal-table {
+          width: 100%;
+        }
+    .group-select{
+           flex-direction: column;
+           gap: 10px;
+        }
+         .comment-input{
+             width: 100px;
+        }
+ }
