@@ -8,17 +8,14 @@ const Lessons = () => {
     const daysOfWeek = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
     const [searchType, setSearchType] = useState('group');
 
-    // Используем контекст для доступа к стору
     const scheduleStore = useContext(ScheduleContext);
 
-    // Эффект для выполнения поиска при изменении searchQuery
     useEffect(() => {
         if (searchQuery.trim() !== '') {
             scheduleStore.getSchedule(searchQuery);
         }
     }, [searchQuery]);
 
-    // Обработчик изменения поискового запроса
     const handleSearchChange = (e) => {
         const query = e.target.value;
         setSearchQuery(query);
@@ -34,11 +31,10 @@ const Lessons = () => {
         }
     };
     const formatTime = (date) => {
-        const hours = String(date.getHours()).padStart(2, '0'); // Добавляем ведущий ноль, если нужно
-        const minutes = String(date.getMinutes()).padStart(2, '0'); // Добавляем ведущий ноль, если нужно
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
         return `${hours}:${minutes}`;
     };
-    // Рендеринг расписания
     const renderSchedule = () => {
         if (!scheduleStore.schedule || scheduleStore.schedule.length === 0) {
             return <div className="no-schedule">Расписание не найдено.</div>;

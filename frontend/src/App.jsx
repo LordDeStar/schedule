@@ -116,7 +116,7 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Header from './components/Header';
 import MainWindow from './components/MainWindow';
 import Contacts from './components/Contacts';
@@ -128,14 +128,17 @@ import Seminars from "./components/Seminars";
 import PersonalAccount from './components/PersonalAccount';
 import TeacherAccount from "./components/TeacherAccount";
 import AdminAccount from "./components/AdminAccount";
-
+import { UserContext } from './stores';
 const App = () => {
+
+    const userStore = useContext(UserContext)
+
     const [activeComponent, setActiveComponent] = useState('mainWindow');
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-     const [isPersonalAccountOpen, setIsPersonalAccountOpen] = useState(false);
-     const [isTeacherAccountOpen, setIsTeacherAccountOpen] = useState(false);
-     const [isAdminAccountOpen, setIsAdminAccountOpen] = useState(false);
-     const [showAverageGrade, setShowAverageGrade] = useState(false);
+    const [isPersonalAccountOpen, setIsPersonalAccountOpen] = useState(false);
+    const [isTeacherAccountOpen, setIsTeacherAccountOpen] = useState(false);
+    const [isAdminAccountOpen, setIsAdminAccountOpen] = useState(false);
+    const [showAverageGrade, setShowAverageGrade] = useState(false);
 
     const handleOpenLoginModal = () => {
         setIsLoginModalOpen(true);
@@ -145,18 +148,18 @@ const App = () => {
         setIsLoginModalOpen(false);
     };
 
-   const handleLoginSuccess = (userType) => {
-      if (userType === 'student') {
+    const handleLoginSuccess = () => {
+        if (userStore.role === 'student') {
             setIsPersonalAccountOpen(true);
             setIsTeacherAccountOpen(false);
             setIsAdminAccountOpen(false);
-         } else if (userType === 'teacher') {
-             setIsTeacherAccountOpen(true);
+        } else if (userStore.role === 'teacher') {
+            setIsTeacherAccountOpen(true);
             setIsPersonalAccountOpen(false);
-           setIsAdminAccountOpen(false);
-        } else if(userType === 'admin'){
+            setIsAdminAccountOpen(false);
+        } else if (userStore.role === 'admin') {
             setIsAdminAccountOpen(true);
-           setIsPersonalAccountOpen(false);
+            setIsPersonalAccountOpen(false);
             setIsTeacherAccountOpen(false);
         }
     };
@@ -164,60 +167,60 @@ const App = () => {
     const handleClosePersonalAccount = () => {
         setIsPersonalAccountOpen(false);
     };
-     const handleCloseTeacherAccount = () => {
-         setIsTeacherAccountOpen(false);
+    const handleCloseTeacherAccount = () => {
+        setIsTeacherAccountOpen(false);
     };
-     const handleCloseAdminAccount = () => {
+    const handleCloseAdminAccount = () => {
         setIsAdminAccountOpen(false);
     };
 
-   const handleToggleAverageGrade = () => {
+    const handleToggleAverageGrade = () => {
         setShowAverageGrade(!showAverageGrade);
     };
 
 
     const renderComponent = () => {
-         if(isPersonalAccountOpen){
+        if (isPersonalAccountOpen) {
             return (
                 <PersonalAccount onClose={handleClosePersonalAccount}
-                                 showAverageGrade={showAverageGrade}
-                                 handleToggleAverageGrade={handleToggleAverageGrade}
+                    showAverageGrade={showAverageGrade}
+                    handleToggleAverageGrade={handleToggleAverageGrade}
                 />
             );
-         } else if (isTeacherAccountOpen) {
-             return (
+        } else if (isTeacherAccountOpen) {
+            return (
                 <TeacherAccount onClose={handleCloseTeacherAccount} />
             );
-        }else if(isAdminAccountOpen){
+        } else if (isAdminAccountOpen) {
             return (
                 <AdminAccount onClose={handleCloseAdminAccount} />
-           );
+            );
         }
-         switch (activeComponent) {
-             case 'mainWindow':
+        switch (activeComponent) {
+            case 'mainWindow':
                 return <MainWindow />;
-             case 'contacts':
+            case 'contacts':
                 return <Contacts />;
-             case 'instructors':
+            case 'instructors':
                 return <Teachers />;
             case 'schedule':
-                 return <Lessons />;
-             case 'lectures':
+                return <Lessons />;
+            case 'lectures':
                 return <Lecture />;
-             case 'seminars':
+            case 'seminars':
                 return <Seminars />;
-             default:
+            default:
                 return <MainWindow />;
-         }
+        }
     };
 
     return (
         <div>
             <Header activeComponent={activeComponent} setActiveComponent={setActiveComponent} onOpenLoginModal={handleOpenLoginModal} />
-             <main className="main-content">
+            <main className="main-content">
                 {renderComponent()}
-             </main>
-              <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} onLoginSuccess={handleLoginSuccess} />
+            </main>
+            <LoginModal isOpen={isLoginModalOpen} onClose={handleCloseLoginModal} onLoginSuccess={handleLoginSuccess} />
         </div>
     );
 };

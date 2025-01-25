@@ -8,6 +8,7 @@ const signInStudent = async (req, res)=>{
             login_student: login
         },
         select:{
+            id_student: true,
             name_student: true,
             surname_student: true,
             password_student: true,
@@ -15,7 +16,14 @@ const signInStudent = async (req, res)=>{
             id_class: true,
             group:{
                 select:{
-                    title_class: true
+                    title_class: true,
+                    teacher:{
+                        select:{
+                            name_teacher: true,
+                            surname_teacher: true,
+                            patronymic_teacher: true
+                        }
+                    }
                 }
             }
 
@@ -63,16 +71,38 @@ const signInTeacher = async(req, res)=>{
             }
         }
     });
-    const isPassValid = await argon.verify(user.password_teacher, password);
-    if (!isPassValid){
-        res.status(401).json({message: "Доступ запрещен"});
+    if (!user){
+        res.json({message: "Такого логина не существует"});
     }
-    res.json(user);
+    try{
+        const isPassValid = await argon.verify(user.password_teacher, password);
+        if (!isPassValid) {
+            res.status(401).json({message: "Доступ запрещен"});
+        }
+    }catch{
+        if (user.subject.title_subject == 'admin' && user.password_teacher == password){
+            res.json(user);
+        }
+        else{
+            res.status(401).json({message: "Доступ запрещен"});
+        }
+    }
 }
 
 const signUpTeacher = async (req, res)=>{
-    const {login, password, name, surname, patronymic, phone, email, telegram, idSubject} = req.body;
+    const {login, password, name, surname, patronymic, phone, email, telegram, subject} = req.body;
     const client = new PrismaClient();
+
+    const idSubjects = await client.subject.findFirst({
+        where:{
+            title_subject: subject
+        },
+        select:{
+            id_subject: true
+        }
+    });
+
+
     const hashedPass = await argon.hash(password);
     try{
         const user = await client.teacher.create({
@@ -85,7 +115,7 @@ const signUpTeacher = async (req, res)=>{
                 phone_teacher: phone,
                 telegram_teacher: telegram,
                 email_teacher: email,
-                id_subject: idSubject
+                id_subject: idSubjects
             },
             select:{
                 name_teacher: true,
@@ -161,6 +191,11 @@ const getTeachers = async (req, res) =>{
             subject: {
                 select:{
                     title_subject: true
+                }
+            },
+            group:{
+                select: {
+                    title_class: true
                 }
             }
         }

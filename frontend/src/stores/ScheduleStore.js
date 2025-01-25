@@ -1,32 +1,32 @@
 import { makeAutoObservable } from 'mobx';
 
 class ScheduleStore {
-    schedule = null; // Исправлено название свойства
-    isLoading = false; // Состояние загрузки
-    error = null; // Состояние ошибки
+    schedule = null;
+    isLoading = false;
+    error = null;
 
     constructor() {
         makeAutoObservable(this);
     }
 
     async getSchedule(search_text) {
-        this.isLoading = true; // Начало загрузки
-        this.error = null; // Сброс ошибки перед новым запросом
+        this.isLoading = true;
+        this.error = null; 
 
         try {
             const response = await fetch(`http://localhost:3500/schedule/get?search_text=${search_text}`);
 
             if (response.ok) {
                 const data = await response.json();
-                this.schedule = this.normalizeSchedule(data); // Нормализация данных
+                this.schedule = this.normalizeSchedule(data); 
             } else {
                 throw new Error(`Ошибка HTTP: ${response.status}`);
             }
         } catch (error) {
-            this.error = error.message; // Сохранение ошибки
+            this.error = error.message;
             alert(`Ошибка при попытке запросить расписание: ${error.message}`);
         } finally {
-            this.isLoading = false; // Завершение загрузки
+            this.isLoading = false;
         }
     }
 
