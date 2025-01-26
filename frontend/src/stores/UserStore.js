@@ -61,17 +61,7 @@ class UserStore {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                login: newTeacher.login,
-                password: newTeacher.password,
-                name_teacher: newTeacher.name,
-                surname_teacher: newTeacher.surname,
-                patronymic_teacher: newTeacher.patronymic,
-                phone_teacher: newTeacher.phone,
-                email_teacher: newTeacher.email,
-                telegram_teacher: newTeacher.telegram,
-                subject: newTeacher.subject,
-            }),
+            body: JSON.stringify(newTeacher),
         });
 
         if (response.ok) {

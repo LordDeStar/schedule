@@ -10,7 +10,7 @@ class GroupsStore{
         const response = await fetch('http://localhost:3500/users/get-groups');
 
         if (response.ok){
-            this.groups = response.json();
+            this.groups = await response.json();
         }
     }
 
@@ -20,11 +20,11 @@ class GroupsStore{
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(title)
+            body: JSON.stringify({title})
         });
 
         if (response.ok){
-            this.groups.push({title_class: title});
+            this.groups.push(await response.json());
         }
     }
 }

@@ -20,6 +20,7 @@ const AdminAccount = ({ onClose }) => {
         email: '',
         telegram: '',
         subject: '', // Предмет вводится текстом
+        group: '', // Новое поле для группы
     });
     const [teachers, setTeachers] = useState([]);
     const [selectedFile, setSelectedFile] = useState(null);
@@ -36,7 +37,8 @@ const AdminAccount = ({ onClose }) => {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setNewTeacher({ ...newTeacher, [name]: value });
+        const cleanedValue = value.replace(/['"]+/g, '');
+        setNewTeacher({ ...newTeacher, [name]: cleanedValue });
     };
 
     const handleFileChange = (event) => {
@@ -78,21 +80,26 @@ const AdminAccount = ({ onClose }) => {
     };
 
     const handleAddTeacher = async () => {
-        const { login, password, name, surname, patronymic, phone, email, telegram, subject } = newTeacher;
+        const { login, password, name, surname, patronymic, phone, email, telegram, subject, group } = newTeacher;
 
-        if (!login || !password || !name || !surname || !patronymic || !phone || !email || !telegram || !subject) {
-            alert('Пожалуйста, заполните все поля.');
+        if (!login || !password || !name || !surname || !patronymic || !phone || !subject) {
+            alert('Пожалуйста, заполните все поля. Пустыми могут быть только почта, телеграм и группа.');
             return;
         }
+        const cleanedSubject = subject.replace(/['"]+/g, '');
 
-        console.log(subjectsStore.subjects);
         const subjectExists = subjectsStore.subjects.some(
-            (subj) => subj.title_subject.toLowerCase() === subject.toLowerCase()
+            (subj) => subj.title_subject.toLowerCase() === cleanedSubject.toLowerCase()
         );
         if (!subjectExists) {
-            await subjectsStore.addNewSubject(subject);
+            await subjectsStore.addNewSubject(cleanedSubject);
         }
-
+        const groupExists = groupsStore.groups.some(
+            (gr) => gr.title_class.toLowerCase() === group.toLocaleLowerCase()
+        );
+        if (!groupExists) {
+            await groupsStore.addNewGroup(group);
+        }
         setTeachers([...teachers, { ...newTeacher }]);
         setNewTeacher({
             login: '',
@@ -104,6 +111,7 @@ const AdminAccount = ({ onClose }) => {
             email: '',
             telegram: '',
             subject: '',
+            group: '',
         });
     };
 
@@ -208,6 +216,16 @@ const AdminAccount = ({ onClose }) => {
                         className="admin-input"
                     />
                 </div>
+                <div className="input-group">
+                    <label className="input-label">Группа:</label>
+                    <input
+                        type="text"
+                        name="group"
+                        value={newTeacher.group}
+                        onChange={handleInputChange}
+                        className="admin-input"
+                    />
+                </div>
                 <button className="add-button" onClick={handleAddTeacher}>
                     Добавить преподавателя
                 </button>
@@ -234,6 +252,10 @@ const AdminAccount = ({ onClose }) => {
                                 <div className="teacher-info-card">
                                     <span className="teacher-item-label">Предмет:</span>
                                     <span className="teacher-item-value">{teacher.subject}</span>
+                                </div>
+                                <div className="teacher-info-card">
+                                    <span className="teacher-item-label">Группа:</span>
+                                    <span className="teacher-item-value">{teacher.group}</span>
                                 </div>
                             </div>
                         ))}

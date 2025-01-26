@@ -90,7 +90,7 @@ const signInTeacher = async(req, res)=>{
 }
 
 const signUpTeacher = async (req, res)=>{
-    const {login, password, name, surname, patronymic, phone, email, telegram, subject} = req.body;
+    const {login, password, name, surname, patronymic, phone, email, telegram, subject, group} = req.body;
     const client = new PrismaClient();
 
     const idSubjects = await client.subject.findFirst({
@@ -101,8 +101,6 @@ const signUpTeacher = async (req, res)=>{
             id_subject: true
         }
     });
-
-
     const hashedPass = await argon.hash(password);
     try{
         const user = await client.teacher.create({
@@ -133,6 +131,19 @@ const signUpTeacher = async (req, res)=>{
                 }
             },
         });
+        if (group && group != ""){
+            await client.group.update({
+                where:{
+                    title_class: group
+                },
+                data:{
+                    id_teacher: user.id_teacher
+                }
+            });
+        }
+        
+        
+        
         res.json(user);
     }
     catch(ex){
@@ -203,10 +214,41 @@ const getTeachers = async (req, res) =>{
 
     res.json(result);
 }
+
+const getGroups = async (req, res) =>{
+    const client = new PrismaClient();
+
+    const groups = await client.group.findMany({
+        select:{
+            id_class: true,
+            title_class: true
+        }
+    });
+
+    res.json(groups);
+}
+const createGroup = async (req, res)=>{
+    const client = new PrismaClient();
+    const {title} = req.body;
+    const group = await client.group.create({
+        data:{
+            title_class: title
+        },
+        select:{
+            id_class: true,
+            title_class: true
+        }
+    });
+
+    res.json(group);
+
+}
 module.exports = {
     signInStudent,
     signInTeacher,
     signUpTeacher,
     signUpStudent, 
-    getTeachers
+    getTeachers,
+    getGroups,
+    createGroup
 }
